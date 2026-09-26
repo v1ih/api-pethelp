@@ -28,11 +28,11 @@ Para gerar a versão compilada: `npm run build` e depois `npm start`.
 
 | Método | Rota | Descrição |
 |---|---|---|
-| GET | `/tutores` | Lista todos os tutores |
-| GET | `/tutores/:id` | Busca um tutor pelo id |
-| POST | `/tutores` | Cadastra um tutor |
-| PUT | `/tutores/:id` | Atualiza um tutor |
-| DELETE | `/tutores/:id` | Remove um tutor |
+| GET | `/responsaveis` | Lista todos os responsáveis |
+| GET | `/responsaveis/:id` | Busca um responsável pelo id |
+| POST | `/responsaveis` | Cadastra um responsável |
+| PUT | `/responsaveis/:id` | Atualiza um responsável |
+| DELETE | `/responsaveis/:id` | Remove um responsável |
 | GET | `/pets` | Lista todos os pets |
 | GET | `/pets/:id` | Busca um pet pelo id |
 | POST | `/pets` | Cadastra um pet |
@@ -46,7 +46,7 @@ Para gerar a versão compilada: `npm run build` e depois `npm start`.
 
 ### Exemplos de corpo (JSON)
 
-**Tutor**
+**Responsável**
 ```json
 {
   "nome": "Ana Souza",
@@ -56,7 +56,7 @@ Para gerar a versão compilada: `npm run build` e depois `npm start`.
 }
 ```
 
-**Pet** (`tutorId` precisa ser de um tutor existente)
+**Pet** (`responsavelId` precisa ser de um responsável existente)
 ```json
 {
   "nome": "Rex",
@@ -64,7 +64,7 @@ Para gerar a versão compilada: `npm run build` e depois `npm start`.
   "raca": "Vira-lata",
   "idade": 3,
   "peso": 12.5,
-  "tutorId": "<id do tutor>"
+  "responsavelId": "<id do responsável>"
 }
 ```
 
@@ -96,9 +96,9 @@ Cada recurso tem um schema em `src/schemas/`. O middleware `validate` (`src/midd
 
 ## Regras de negócio
 
-- Não é possível cadastrar dois tutores com o mesmo e-mail (`409`).
-- Um pet só pode ser criado para um tutor existente, e uma consulta só para um pet existente (`404`).
-- Não é possível remover um tutor que tem pets, nem um pet que tem consultas (`409`).
+- Não é possível cadastrar dois responsáveis com o mesmo e-mail (`409`).
+- Um pet só pode ser criado para um responsável existente, e uma consulta só para um pet existente (`404`).
+- Não é possível remover um responsável que tem pets, nem um pet que tem consultas (`409`).
 
 ## Códigos de resposta
 
@@ -117,7 +117,7 @@ Cada recurso tem um schema em `src/schemas/`. O middleware `validate` (`src/midd
 src/
 ├── server.ts            # sobe o servidor
 ├── app.ts               # configura o Express e registra as rotas
-├── schemas/             # schemas do Zod (tutor, pet, consulta, id)
+├── schemas/             # schemas do Zod (responsavel, pet, consulta, id)
 ├── middlewares/         # validação e tratamento de erros
 ├── routes/              # rotas de cada recurso
 ├── controllers/         # lógica de cada rota
