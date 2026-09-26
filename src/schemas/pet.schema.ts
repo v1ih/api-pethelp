@@ -8,7 +8,7 @@ export const petSchema = z.object({
   raca: z.string().trim().optional(),
   idade: z.number().int("A idade deve ser um número inteiro").min(0, "A idade não pode ser negativa").max(40, "Idade máxima: 40 anos"),
   peso: z.number().positive("O peso deve ser maior que zero"),
-  tutorId: z.uuid("tutorId deve ser um UUID válido"),
+  responsavelId: z.uuid("responsavelId deve ser um UUID válido"),
 });
 
 export type PetInput = z.infer<typeof petSchema>;

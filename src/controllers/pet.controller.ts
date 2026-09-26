@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { petRepository, tutorRepository, consultaRepository } from "../repositories";
+import { petRepository, responsavelRepository, consultaRepository } from "../repositories";
 import type { PetInput } from "../schemas/pet.schema";
 
 type IdParams = { id: string };
@@ -16,15 +16,15 @@ export const petController = {
   },
 
   criar(req: Request<{}, {}, PetInput>, res: Response) {
-    if (!tutorRepository.findById(req.body.tutorId)) {
-      return res.status(404).json({ mensagem: "Tutor informado não existe" });
+    if (!responsavelRepository.findById(req.body.responsavelId)) {
+      return res.status(404).json({ mensagem: "Responsável informado não existe" });
     }
     res.status(201).json(petRepository.create(req.body));
   },
 
   atualizar(req: Request<IdParams, {}, PetInput>, res: Response) {
-    if (!tutorRepository.findById(req.body.tutorId)) {
-      return res.status(404).json({ mensagem: "Tutor informado não existe" });
+    if (!responsavelRepository.findById(req.body.responsavelId)) {
+      return res.status(404).json({ mensagem: "Responsável informado não existe" });
     }
     const pet = petRepository.update(req.params.id, req.body);
     if (!pet) return res.status(404).json({ mensagem: "Pet não encontrado" });

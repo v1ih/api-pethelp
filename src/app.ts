@@ -1,5 +1,5 @@
 import express from "express";
-import { tutorRoutes } from "./routes/tutor.routes";
+import { responsavelRoutes } from "./routes/responsavel.routes";
 import { petRoutes } from "./routes/pet.routes";
 import { consultaRoutes } from "./routes/consulta.routes";
 import { errorHandler, notFound } from "./middlewares/error-handler";
@@ -11,11 +11,11 @@ app.use(express.json());
 app.get("/", (_req, res) => {
   res.json({
     api: "PetHelp API",
-    recursos: ["/tutores", "/pets", "/consultas"],
+    recursos: ["/responsaveis", "/pets", "/consultas"],
   });
 });
 
-app.use("/tutores", tutorRoutes);
+app.use("/responsaveis", responsavelRoutes);
 app.use("/pets", petRoutes);
 app.use("/consultas", consultaRoutes);
 

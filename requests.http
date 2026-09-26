@@ -1,10 +1,10 @@
 @baseUrl = http://localhost:3333
 
-### ================= TUTORES =================
+### ================= RESPONSÁVEIS =================
 
-### Criar tutor
-# @name novoTutor
-POST {{baseUrl}}/tutores
+### Criar responsável
+# @name novoResponsavel
+POST {{baseUrl}}/responsaveis
 Content-Type: application/json
 
 {
@@ -14,8 +14,8 @@ Content-Type: application/json
   "cpf": "123.456.789-00"
 }
 
-### Criar tutor inválido (mostra a validação do Zod)
-POST {{baseUrl}}/tutores
+### Criar responsável inválido (mostra a validação do Zod)
+POST {{baseUrl}}/responsaveis
 Content-Type: application/json
 
 {
@@ -25,14 +25,14 @@ Content-Type: application/json
   "cpf": "000"
 }
 
-### Listar tutores
-GET {{baseUrl}}/tutores
+### Listar responsáveis
+GET {{baseUrl}}/responsaveis
 
-### Buscar tutor por id
-GET {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+### Buscar responsável por id
+GET {{baseUrl}}/responsaveis/{{novoResponsavel.response.body.id}}
 
-### Atualizar tutor
-PUT {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+### Atualizar responsável
+PUT {{baseUrl}}/responsaveis/{{novoResponsavel.response.body.id}}
 Content-Type: application/json
 
 {
@@ -55,7 +55,7 @@ Content-Type: application/json
   "raca": "Vira-lata",
   "idade": 3,
   "peso": 12.5,
-  "tutorId": "{{novoTutor.response.body.id}}"
+  "responsavelId": "{{novoResponsavel.response.body.id}}"
 }
 
 ### Criar pet inválido
@@ -67,7 +67,7 @@ Content-Type: application/json
   "especie": "dragao",
   "idade": -1,
   "peso": 0,
-  "tutorId": "abc"
+  "responsavelId": "abc"
 }
 
 ### Listar pets
@@ -86,7 +86,7 @@ Content-Type: application/json
   "raca": "Vira-lata",
   "idade": 4,
   "peso": 13.2,
-  "tutorId": "{{novoTutor.response.body.id}}"
+  "responsavelId": "{{novoResponsavel.response.body.id}}"
 }
 
 ### ================= CONSULTAS =================
@@ -125,8 +125,8 @@ Content-Type: application/json
 
 ### ================= REMOÇÕES (na ordem certa) =================
 
-### Tentar remover tutor com pets (409)
-DELETE {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+### Tentar remover responsável com pets (409)
+DELETE {{baseUrl}}/responsaveis/{{novoResponsavel.response.body.id}}
 
 ### Remover consulta
 DELETE {{baseUrl}}/consultas/{{novaConsulta.response.body.id}}
@@ -134,5 +134,5 @@ DELETE {{baseUrl}}/consultas/{{novaConsulta.response.body.id}}
 ### Remover pet
 DELETE {{baseUrl}}/pets/{{novoPet.response.body.id}}
 
-### Remover tutor
-DELETE {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+### Remover responsável
+DELETE {{baseUrl}}/responsaveis/{{novoResponsavel.response.body.id}}

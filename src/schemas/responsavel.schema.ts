@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const tutorSchema = z.object({
+export const responsavelSchema = z.object({
   nome: z.string().trim().min(3, "O nome deve ter pelo menos 3 caracteres"),
   email: z.email("E-mail inválido"),
   telefone: z
@@ -9,5 +9,5 @@ export const tutorSchema = z.object({
   cpf: z.string().regex(/^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$/, "CPF inválido. Ex.: 123.456.789-00"),
 });
 
-export type TutorInput = z.infer<typeof tutorSchema>;
-export type Tutor = TutorInput & { id: string };
+export type ResponsavelInput = z.infer<typeof responsavelSchema>;
+export type Responsavel = ResponsavelInput & { id: string };
