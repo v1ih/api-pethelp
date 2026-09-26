@@ -1,0 +1,138 @@
+@baseUrl = http://localhost:3333
+
+### ================= TUTORES =================
+
+### Criar tutor
+# @name novoTutor
+POST {{baseUrl}}/tutores
+Content-Type: application/json
+
+{
+  "nome": "Ana Souza",
+  "email": "ana@email.com",
+  "telefone": "(11) 91234-5678",
+  "cpf": "123.456.789-00"
+}
+
+### Criar tutor inválido (mostra a validação do Zod)
+POST {{baseUrl}}/tutores
+Content-Type: application/json
+
+{
+  "nome": "A",
+  "email": "email-errado",
+  "telefone": "123",
+  "cpf": "000"
+}
+
+### Listar tutores
+GET {{baseUrl}}/tutores
+
+### Buscar tutor por id
+GET {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+
+### Atualizar tutor
+PUT {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+Content-Type: application/json
+
+{
+  "nome": "Ana Souza Lima",
+  "email": "ana@email.com",
+  "telefone": "(11) 98888-7777",
+  "cpf": "123.456.789-00"
+}
+
+### ================= PETS =================
+
+### Criar pet
+# @name novoPet
+POST {{baseUrl}}/pets
+Content-Type: application/json
+
+{
+  "nome": "Rex",
+  "especie": "cachorro",
+  "raca": "Vira-lata",
+  "idade": 3,
+  "peso": 12.5,
+  "tutorId": "{{novoTutor.response.body.id}}"
+}
+
+### Criar pet inválido
+POST {{baseUrl}}/pets
+Content-Type: application/json
+
+{
+  "nome": "Mia",
+  "especie": "dragao",
+  "idade": -1,
+  "peso": 0,
+  "tutorId": "abc"
+}
+
+### Listar pets
+GET {{baseUrl}}/pets
+
+### Buscar pet por id
+GET {{baseUrl}}/pets/{{novoPet.response.body.id}}
+
+### Atualizar pet
+PUT {{baseUrl}}/pets/{{novoPet.response.body.id}}
+Content-Type: application/json
+
+{
+  "nome": "Rex",
+  "especie": "cachorro",
+  "raca": "Vira-lata",
+  "idade": 4,
+  "peso": 13.2,
+  "tutorId": "{{novoTutor.response.body.id}}"
+}
+
+### ================= CONSULTAS =================
+
+### Criar consulta
+# @name novaConsulta
+POST {{baseUrl}}/consultas
+Content-Type: application/json
+
+{
+  "petId": "{{novoPet.response.body.id}}",
+  "veterinario": "Dr. Carlos",
+  "data": "2026-10-01T14:30:00Z",
+  "motivo": "Vacina anual",
+  "valor": 150
+}
+
+### Listar consultas
+GET {{baseUrl}}/consultas
+
+### Buscar consulta por id
+GET {{baseUrl}}/consultas/{{novaConsulta.response.body.id}}
+
+### Atualizar consulta
+PUT {{baseUrl}}/consultas/{{novaConsulta.response.body.id}}
+Content-Type: application/json
+
+{
+  "petId": "{{novoPet.response.body.id}}",
+  "veterinario": "Dr. Carlos",
+  "data": "2026-10-01T14:30:00Z",
+  "motivo": "Vacina anual",
+  "status": "realizada",
+  "valor": 150
+}
+
+### ================= REMOÇÕES (na ordem certa) =================
+
+### Tentar remover tutor com pets (409)
+DELETE {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
+
+### Remover consulta
+DELETE {{baseUrl}}/consultas/{{novaConsulta.response.body.id}}
+
+### Remover pet
+DELETE {{baseUrl}}/pets/{{novoPet.response.body.id}}
+
+### Remover tutor
+DELETE {{baseUrl}}/tutores/{{novoTutor.response.body.id}}
