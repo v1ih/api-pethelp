@@ -125,7 +125,6 @@ src/
 ├── server.ts            # sobe o servidor
 ├── app.ts               # configura o Express e registra as rotas
 ├── schemas/             # schemas do Zod (responsavel, pet, consulta, id)
-├── docs/                # documentação do Swagger gerada a partir dos schemas
 ├── middlewares/         # validação e tratamento de erros
 ├── routes/              # rotas de cada recurso
 ├── controllers/         # lógica de cada rota
