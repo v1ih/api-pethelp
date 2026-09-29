@@ -9,6 +9,7 @@ Trabalho da disciplina **Laboratório de Desenvolvimento Mobile II**.
 - Node.js + TypeScript
 - Express 5 (servidor HTTP e rotas)
 - Zod (validação dos dados de entrada)
+- Swagger UI (documentação interativa)
 - tsx (roda o TypeScript direto em desenvolvimento)
 
 ## Como rodar
@@ -23,6 +24,12 @@ A API sobe em `http://localhost:3333`.
 Para gerar a versão compilada: `npm run build` e depois `npm start`.
 
 > Os dados ficam em memória: ao reiniciar o servidor, tudo é apagado.
+
+## Documentação (Swagger)
+
+Com a API rodando, acesse **http://localhost:3333/docs** (ou só `http://localhost:3333`, que redireciona para lá).
+
+Lá estão todos os endpoints, e dá para testar cada um pelo navegador: clique no endpoint → **Try it out** → edite o JSON → **Execute**. A documentação é gerada a partir dos próprios schemas do Zod (`src/docs/openapi.ts`).
 
 ## Recursos (3 CRUDs)
 
@@ -118,6 +125,7 @@ src/
 ├── server.ts            # sobe o servidor
 ├── app.ts               # configura o Express e registra as rotas
 ├── schemas/             # schemas do Zod (responsavel, pet, consulta, id)
+├── docs/                # documentação do Swagger gerada a partir dos schemas
 ├── middlewares/         # validação e tratamento de erros
 ├── routes/              # rotas de cada recurso
 ├── controllers/         # lógica de cada rota
